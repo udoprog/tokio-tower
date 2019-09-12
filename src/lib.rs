@@ -37,6 +37,7 @@
 //! the client helper as `Client` in the protocol module you're working with (e.g.,
 //! [`pipeline::Client`]), and the server helper as `Server` in the same place.
 #![deny(missing_docs)]
+#![feature(type_alias_impl_trait)]
 
 const YIELD_EVERY: usize = 24;
 
