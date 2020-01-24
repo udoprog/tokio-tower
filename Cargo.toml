@@ -30,6 +30,7 @@ tokio = { version = "0.2", features = [ "sync" ] }
 crossbeam = "0.7"
 tracing = { version = "0.1.2", optional = true }
 pin-project = "0.4.0"
+unicycle = {git = "https://github.com/udoprog/unicycle"}
 
 [dev-dependencies]
 tokio = { version = "0.2", features = [ "macros", "tcp", "dns", "rt-core" ] }

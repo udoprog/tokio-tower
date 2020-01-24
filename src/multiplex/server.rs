@@ -5,7 +5,6 @@ use futures_core::{
     task::{Context, Poll},
 };
 use futures_sink::Sink;
-use futures_util::stream::FuturesUnordered;
 use pin_project::pin_project;
 use std::pin::Pin;
 use std::{error, fmt};
@@ -23,7 +22,7 @@ where
     S: Service<<T as TryStream>::Ok>,
 {
     #[pin]
-    pending: FuturesUnordered<S::Future>,
+    pending: unicycle::Unordered<S::Future, unicycle::Futures>,
     #[pin]
     transport: T,
     service: S,
@@ -139,7 +138,7 @@ where
     /// before an earlier request, its response is still sent immediately.
     pub fn new(transport: T, service: S) -> Self {
         Server {
-            pending: FuturesUnordered::new(),
+            pending: unicycle::Unordered::new(),
             transport,
             service,
             in_flight: 0,
